@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Saldãonline - Loja</title>
+</head>
+<body>
+  <h1>Bem-vindo à Saldãonline</h1>
+  <div id="produtos"></div>
   <script>
     const user = JSON.parse(localStorage.getItem("usuarioLogado"));
     if (!user) window.location.href = "login.html";
-  </script>
-</head>
-<body>
-  <h1>Saldãonline - Produtos</h1>
-  <a href="carrinho.html">🛒 Ir para o Carrinho</a>
-  <div id="produtos"></div>
 
-  <script>
-    fetch("https://sua-api.onrender.com/produtos")
+    const API_URL = "https://saldonline-api.onrender.com";
+    fetch(`${API_URL}/produtos`)
       .then(res => res.json())
-      .then(produtos => {
-        const div = document.getElementById("produtos");
-        produtos.forEach(prod => {
-          const el = document.createElement("div");
-          el.innerHTML = `<p><strong>${prod.nome}</strong> - R$ ${prod.preco.toFixed(2)}
-                          <button onclick='adicionar(${JSON.stringify(prod)})'>Comprar</button></p>`;
-          div.appendChild(el);
-        });
+      .then(data => {
+        document.getElementById("produtos").innerHTML =
+          data.map(p => `<div><strong>${p.nome}</strong>: R$ ${p.preco}</div>`).join("");
       });
-
-    function adicionar(produto) {
-      let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-      carrinho.push(produto);
-      localStorage.setItem("carrinho", JSON.stringify(carrinho));
-      alert("Adicionado ao carrinho!");
-    }
   </script>
 </body>
 </html>

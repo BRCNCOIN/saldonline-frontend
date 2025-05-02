@@ -1,47 +1,32 @@
-let isLogin = true;
+const API_URL = "https://saldonline-api.onrender.com";
 
-function toggleForm() {
-  isLogin = !isLogin;
-  document.getElementById("form-title").innerText = isLogin ? "Login" : "Cadastro";
-  document.querySelector("button").innerText = isLogin ? "Entrar" : "Cadastrar";
-  document.querySelector("p").innerText = isLogin
-    ? "Não tem conta? Cadastre-se"
-    : "Já tem conta? Faça login";
-  document.getElementById("error-msg").innerText = "";
-}
+document.getElementById("form-login").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const isCadastro = document.getElementById("cadastro").checked;
 
-function submitForm() {
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const errorMsg = document.getElementById("error-msg");
-
-  if (!username || !password) {
-    errorMsg.innerText = "Preencha todos os campos.";
-    return;
-  }
-
-  const url = 'https://sua-api.onrender.com/usuarios';
-
-  if (isLogin) {
-    fetch(`${url}?username=${username}&password=${password}`)
-      .then(res => res.json())
-      .then(users => {
-        if (users.length > 0) {
-          localStorage.setItem("usuarioLogado", JSON.stringify(users[0]));
-          window.location.href = "index.html";
-        } else {
-          errorMsg.innerText = "Usuário ou senha inválidos.";
-        }
-      });
-  } else {
-    fetch(url, {
+  if (isCadastro) {
+    const response = await fetch(`${API_URL}/usuarios`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
-    })
-    .then(() => {
-      localStorage.setItem("usuarioLogado", JSON.stringify({ username, password }));
-      window.location.href = "index.html";
     });
+    if (response.ok) {
+      const user = await response.json();
+      localStorage.setItem("usuarioLogado", JSON.stringify(user));
+      window.location.href = "index.html";
+    } else {
+      alert("Erro ao cadastrar");
+    }
+  } else {
+    const response = await fetch(`${API_URL}/usuarios?username=${username}&password=${password}`);
+    const users = await response.json();
+    if (users.length > 0) {
+      localStorage.setItem("usuarioLogado", JSON.stringify(users[0]));
+      window.location.href = "index.html";
+    } else {
+      alert("Usuário ou senha inválidos");
+    }
   }
-}
+});

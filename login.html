@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Login - Saldãonline</title>
 </head>
 <body>
-  <h2 id="form-title">Login</h2>
-  <div id="error-msg" style="color:red;"></div>
-  <input type="text" id="username" placeholder="Usuário" required />
-  <input type="password" id="password" placeholder="Senha" required />
-  <button onclick="submitForm()">Entrar</button>
-  <p onclick="toggleForm()" style="cursor:pointer;color:blue;">Não tem conta? Cadastre-se</p>
+  <h2>Login ou Cadastro</h2>
+  <form id="form-login">
+    <input type="text" id="username" placeholder="Usuário" required />
+    <input type="password" id="password" placeholder="Senha" required />
+    <label><input type="checkbox" id="cadastro" /> Cadastre-se</label>
+    <button type="submit">Entrar</button>
+  </form>
   <script src="js/auth.js"></script>
 </body>
 </html>
