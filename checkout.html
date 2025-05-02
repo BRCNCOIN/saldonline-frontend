@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Saldãonline</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Finalizar Compra</h2>
+    <div class="card p-4">
+      <p><strong>Resumo do pedido:</strong></p>
+      <ul id="resumo-pedido" class="list-group mb-3"></ul>
+      <button class="btn btn-success w-100" onclick="finalizarPedido()">Confirmar Pedido</button>
+    </div>
+  </div>
+<script>
+function finalizarPedido() {
+  alert('Pedido finalizado com sucesso!');
+  localStorage.removeItem("carrinho");
+  window.location.href = "index.html";
+}
+window.onload = () => {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const resumo = document.getElementById("resumo-pedido");
+  carrinho.forEach(prod => {
+    const item = document.createElement("li");
+    item.className = "list-group-item";
+    item.innerText = prod.nome + " - R$" + prod.preco;
+    resumo.appendChild(item);
+  });
+};
+</script>
+</body>
+</html>
