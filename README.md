@@ -1,54 +1,67 @@
-# 🛒 Saldãonline - Loja Virtual
 
-O melhor da internet por menos!  
-Projeto de loja virtual com autenticação, carrinho de compras e painel de administração.
+# Saldãonline 🛒
 
-## 🌐 Link do site
-[https://brcncoin.github.io/saldonline-frontend](https://brcncoin.github.io/saldonline-frontend)
-
-## 🔧 Tecnologias
-- HTML, CSS, JavaScript (Vanilla)
-- LocalStorage para sessão do usuário
-- JSON Server (Render) como back-end
-
-## 📁 Funcionalidades
-
-### 🧑 Login (`login.html`)
-- Usuários cadastrados acessam a loja com nome de usuário e senha
-- Dados buscados da API em: `https://saldonline-api.onrender.com/usuarios`
-
-### 🛍️ Loja (`index.html`)
-- Página protegida (só acessível após login)
-- Simulação de produtos
-
-### 🛒 Carrinho (`carrinho.html`)
-- Mostra itens adicionados ao carrinho
-- Botão "Finalizar compra" envia pedido para a API
-
-### 📦 Pedidos Admin (`admin.html`)
-- Exibe todos os pedidos feitos
-- Permite excluir qualquer pedido
-- Protegido por autenticação
-
-## 🖥️ Backend (API)
-Hospedado via Render:  
-🔗 [`https://saldonline-api.onrender.com`](https://saldonline-api.onrender.com)
-
-Endpoints principais:
-- `GET /usuarios`
-- `GET/POST /pedidos`
-- `DELETE /pedidos/:id`
+**Saldãonline** é uma loja online moderna com visual vibrante, sistema de login e cadastro, integração com uma API REST e página de checkout.  
+Frontend hospedado no GitHub Pages e backend gratuito no Render com JSON Server.
 
 ---
 
-## ✅ Como rodar localmente (opcional)
-1. Clone o repositório:
-```bash
-git clone https://github.com/seuusuario/saldonline-frontend.git
+## 🌐 Acesse
+
+- **Frontend (GitHub Pages)**: [https://brcncoin.github.io/saldonline-frontend/](https://brcncoin.github.io/saldonline-frontend/)
+- **Backend API (Render)**: [https://saldonline-api.onrender.com](https://saldonline-api.onrender.com)
+
+---
+
+## 🔐 Funcionalidades
+
+- Tela de login com imagem de fundo e Bootstrap 5
+- Cadastro de usuários com envio direto para a API (`/usuarios`)
+- Proteção por autenticação (armazenada em `localStorage`)
+- Exibição de produtos da API (`/produtos`)
+- Carrinho de compras com localStorage
+- Página de checkout com resumo e confirmação de pedido
+- Estilo moderno e responsivo (HTML5 + CSS + Bootstrap)
+
+---
+
+## 🚀 Como usar
+
+1. Faça login com um usuário existente ou cadastre um novo.
+2. Acesse a loja (`index.html`) e adicione produtos ao carrinho.
+3. Vá até o `checkout.html` para finalizar a compra.
+
+---
+
+## 🛠️ Tecnologias
+
+- HTML5, CSS3, JavaScript
+- Bootstrap 5
+- JSON Server (Render)
+- GitHub Pages
+
+---
+
+## 📁 Estrutura
+
 ```
-2. Abra o `index.html` com um navegador
+📦 saldonline
+├── index.html
+├── login.html
+├── checkout.html
+├── style.css
+├── login.js
+├── loja.js
+├── README.md
+```
 
 ---
 
-## 🙋‍♂️ Criado por
-Projeto didático por [@seunome] com auxílio do ChatGPT.
+## 📌 Observações
+
+- A API pode "dormir" no Render se estiver inativa. Aguarde alguns segundos ao acessar.
+- Os dados são públicos e resetáveis.
+
+---
+
+Desenvolvido com 💙 para demonstrar uma loja funcional com autenticação e frontend moderno.
