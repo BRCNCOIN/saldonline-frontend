@@ -1,32 +1,21 @@
-const API_URL = "https://saldonline-api.onrender.com";
+// Funções de autenticação
 
-document.getElementById("form-login").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const isCadastro = document.getElementById("cadastro").checked;
+// Verifica se está logado ao carregar a página
+function verificarLogin() {
+    const user = localStorage.getItem("usuarioLogado");
+    const paginaProtegida = !location.pathname.includes("login.html");
 
-  if (isCadastro) {
-    const response = await fetch(`${API_URL}/usuarios`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
-    });
-    if (response.ok) {
-      const user = await response.json();
-      localStorage.setItem("usuarioLogado", JSON.stringify(user));
-      window.location.href = "index.html";
-    } else {
-      alert("Erro ao cadastrar");
+    if (!user && paginaProtegida) {
+        alert("Você precisa estar logado para acessar esta página.");
+        window.location.href = "login.html";
     }
-  } else {
-    const response = await fetch(`${API_URL}/usuarios?username=${username}&password=${password}`);
-    const users = await response.json();
-    if (users.length > 0) {
-      localStorage.setItem("usuarioLogado", JSON.stringify(users[0]));
-      window.location.href = "index.html";
-    } else {
-      alert("Usuário ou senha inválidos");
-    }
-  }
-});
+}
+
+// Logout
+function logout() {
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "login.html";
+}
+
+// Executar verificação ao carregar
+verificarLogin();

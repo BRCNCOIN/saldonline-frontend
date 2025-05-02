@@ -2,16 +2,12 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Carrinho - Saldãonline</title>
+  <title>Saldãonline - Carrinho</title>
+  <script src="js/auth.js" defer></script>
 </head>
 <body>
-  <h2>Seu carrinho</h2>
-  <div id="itens-carrinho"></div>
-  <script>
-    const user = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!user) window.location.href = "login.html";
-
-    document.getElementById("itens-carrinho").innerText = "Carrinho vazio (exemplo)";
-  </script>
+  <h1>Seu carrinho</h1>
+  <button onclick="logout()">Sair</button>
+  <p>Aqui vai o conteúdo do carrinho em breve.</p>
 </body>
 </html>

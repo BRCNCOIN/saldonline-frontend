@@ -2,21 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Saldãonline - Loja</title>
+  <title>Saldãonline - Produtos</title>
+  <script src="js/auth.js" defer></script>
 </head>
 <body>
-  <h1>Bem-vindo à Saldãonline</h1>
+  <h1>Bem-vindo à Saldãonline!</h1>
+  <button onclick="logout()">Sair</button>
   <div id="produtos"></div>
-  <script>
-    const user = JSON.parse(localStorage.getItem("usuarioLogado"));
-    if (!user) window.location.href = "login.html";
 
-    const API_URL = "https://saldonline-api.onrender.com";
-    fetch(`${API_URL}/produtos`)
+  <script>
+    fetch("https://saldonline-api.onrender.com/produtos")
       .then(res => res.json())
-      .then(data => {
-        document.getElementById("produtos").innerHTML =
-          data.map(p => `<div><strong>${p.nome}</strong>: R$ ${p.preco}</div>`).join("");
+      .then(produtos => {
+        const div = document.getElementById("produtos");
+        produtos.forEach(p => {
+          const item = document.createElement("div");
+          item.textContent = `${p.nome} - R$ ${p.preco}`;
+          div.appendChild(item);
+        });
       });
   </script>
 </body>
