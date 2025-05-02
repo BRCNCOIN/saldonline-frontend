@@ -2,16 +2,18 @@
 <html lang="pt-BR" data-protegido="true">
 <head>
   <meta charset="UTF-8" />
-  <title>Saldãonline - Produtos</title>
+  <title>Admin - Pedidos</title>
   <script src="js/auth.js" defer></script>
+  <script src="js/admin.js" defer></script>
 </head>
 <body>
-  <h1>Bem-vindo à Saldãonline</h1>
+  <h1>Painel de Pedidos</h1>
   <nav>
+    <a href="index.html">Produtos</a> |
     <a href="carrinho.html">Carrinho</a> |
     <a href="admin.html">Ver pedidos</a>
   </nav>
   <button onclick="logout()">Sair</button>
-  <p>Lista de produtos (exemplo)</p>
+  <div id="pedidos"></div>
 </body>
 </html>

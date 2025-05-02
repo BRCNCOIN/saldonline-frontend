@@ -1,21 +1,19 @@
-// Funções de autenticação
+// auth.js
 
-// Verifica se está logado ao carregar a página
 function verificarLogin() {
-    const user = localStorage.getItem("usuarioLogado");
-    const paginaProtegida = !location.pathname.includes("login.html");
-
-    if (!user && paginaProtegida) {
-        alert("Você precisa estar logado para acessar esta página.");
-        window.location.href = "login.html";
-    }
-}
-
-// Logout
-function logout() {
-    localStorage.removeItem("usuarioLogado");
+  const usuario = localStorage.getItem("usuarioLogado");
+  if (!usuario) {
     window.location.href = "login.html";
+  }
 }
 
-// Executar verificação ao carregar
-verificarLogin();
+function logout() {
+  localStorage.removeItem("usuarioLogado");
+  window.location.href = "login.html";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.dataset.protegido === "true") {
+    verificarLogin();
+  }
+});

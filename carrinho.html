@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-protegido="true">
 <head>
   <meta charset="UTF-8" />
-  <title>Saldãonline - Carrinho</title>
+  <title>Carrinho</title>
   <script src="js/auth.js" defer></script>
+  <script src="js/carrinho.js" defer></script>
 </head>
 <body>
   <h1>Seu carrinho</h1>
+  <nav>
+    <a href="index.html">Produtos</a> |
+    <a href="admin.html">Ver pedidos</a>
+  </nav>
   <button onclick="logout()">Sair</button>
-  <p>Aqui vai o conteúdo do carrinho em breve.</p>
+  <div id="carrinho"></div>
+  <button onclick="finalizarCompra()">Finalizar compra</button>
 </body>
 </html>
